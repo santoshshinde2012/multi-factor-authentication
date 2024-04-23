@@ -9,11 +9,11 @@
 - React JS
 - Vite
 
-# Backend
+## Backend
 
 The backend includes the APIs for generating QR code and verifying TOTP code.
 
-# Client
+## Client
 
 The client includes a UI for showing QR codes and an input form to take a TOTP code.
 
