@@ -19,10 +19,16 @@ The client includes a UI for showing QR codes and an input form to take a TOTP c
 
 # Start The application in Development Mode
 
-- Clone the Application git clone https://github.com/santoshshinde2012/node-ts-sequelize-pg-boilerplate.git
-- Install the dependencies `npm install`
-- Start the application `npm run dev`
+```
+## Clone the Application 
+git clone https://github.com/santoshshinde2012/multi-factor-authentication.git
 
+## Install the dependencies
+cd multi-factor-authentication && npm install
+
+## Start the application
+npm run dev
+```
 
 ## Initial Folder Structure
 
