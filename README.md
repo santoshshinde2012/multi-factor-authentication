@@ -1,4 +1,4 @@
-# [Multi-Factor-Authentication]
+# [Multi-Factor-Authentication](https://github.com/santoshshinde2012/multi-factor-authentication)
 
 2FA TOTP implementation using Node.js, TypeScript, and React.js
 
