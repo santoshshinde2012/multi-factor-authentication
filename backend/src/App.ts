@@ -1,22 +1,27 @@
 import cors from 'cors';
-import express from 'express';
+import express, { Application, Request, Response } from 'express';
 import http from 'http';
 import helmet from 'helmet';
 import 'dotenv/config';
 import swaggerUi from 'swagger-ui-express';
+import database from './database';
 import swaggerDocument from '../swagger.json';
 import registerRoutes from './routes';
 import addErrorHandler from './middleware/error-handler';
+import logger from './lib/logger';
 
 export default class App {
-	public express: express.Application;
+	public express: Application;
 
 	public httpServer: http.Server;
 
 	public async init(): Promise<void> {
-		const { NODE_ENV } = process.env;
 		this.express = express();
 		this.httpServer = http.createServer(this.express);
+
+		// Assert database connection
+		await this.assertDatabaseConnection();
+
 
 		// add all global middleware like cors
 		this.middleware();
@@ -28,7 +33,7 @@ export default class App {
 		this.express.use(addErrorHandler);
 
 		// In a development/test environment, Swagger will be enabled.
-		if (NODE_ENV && NODE_ENV !== 'prod') {
+		if (process.env.NODE_ENV !== 'prod') {
 			this.setupSwaggerDocs();
 		}
 	}
@@ -38,8 +43,12 @@ export default class App {
 	 */
 	private routes(): void {
 		this.express.get('/', this.basePathRoute);
-		this.express.get('/web', this.parseRequestHeader, this.basePathRoute);
-		this.express.use('/', registerRoutes());
+		this.express.use('/api', registerRoutes());
+		this.express.get(
+			'/web',
+			this.parseRequestHeader,
+			this.basePathRoute,
+		);
 	}
 
 	/**
@@ -66,8 +75,8 @@ export default class App {
 	}
 
 	private parseRequestHeader(
-		req: express.Request,
-		res: express.Response,
+		_req: Request,
+		_res: Response,
 		next: Function,
 	): void {
 		// parse request header
@@ -75,11 +84,18 @@ export default class App {
 		next();
 	}
 
-	private basePathRoute(
-		request: express.Request,
-		response: express.Response,
-	): void {
+	private basePathRoute(_request: Request, response: Response): void {
 		response.json({ message: 'base path' });
+	}
+
+	private async assertDatabaseConnection(): Promise<void> {
+		try {
+			await database.authenticate();
+			await database.sync();
+			logger.info('Connection has been established successfully.');
+		} catch (error) {
+			logger.error('Unable to connect to the database:', error);
+		}
 	}
 
 	private setupSwaggerDocs(): void {

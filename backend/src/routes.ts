@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import SystemStatusController from './components/system-status/system-status.controller';
+import MultiFactorAuthController from './components/multi-factor-authentication/MultiFactorAuthController';
+import SystemStatusController from './components/system-status/SystemStatusController';
 
 /**
  * Here, you can register routes by instantiating the controller.
@@ -8,8 +9,10 @@ import SystemStatusController from './components/system-status/system-status.con
 export default function registerRoutes(): Router {
 	const router = Router();
 
+	// Define an array of controller objects
 	const controllers = [
 		new SystemStatusController(),
+		new MultiFactorAuthController(),
 	];
 
 	// Dynamically register routes for each controller

@@ -12,6 +12,7 @@ COPY package.json ./
 COPY tsconfig.json ./
 COPY swagger.json ./
 COPY .env ./
+COPY .sequelizerc ./
 COPY src/ ./src
 RUN npm install --ignore-scripts
 RUN npm run build

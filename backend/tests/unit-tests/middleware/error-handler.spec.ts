@@ -69,8 +69,6 @@ describe('ErrorHandler middleware', () => {
     });
 
     test('with 200 status code and updated env variables', async () => {
-        process.env.APPLY_ENCRYPTION = 'true';
-        process.env.SECRET_KEY = 'key';
         const status: number = 200;
         addErrorHandler({
             status,

@@ -9,14 +9,15 @@ import {
 	IResourceUsageResponse,
 	IProcessInfoResponse,
 	ISystemInfoResponse,
-} from './system-status.types';
+} from './SystemStatusTypes';
 
 /**
  * Status controller
  */
 export default class SystemStatusController extends BaseController {
-
+	// base path
 	public basePath: string = 'system';
+
 	/**
 	 *
 	 */

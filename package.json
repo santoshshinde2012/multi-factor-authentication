@@ -6,7 +6,9 @@
     "start:client": "cd client && npm run dev",
     "start:backend": "cd backend && npm run dev",
     "dev": "npm run start:backend & npm run start:client",
-    "postinstall": "cd client && npm install && cd ../backend && npm install"
+    "postinstall": "cd client && npm install && cd ../backend && npm install",
+    "db:up": "cd backend && npm run db:up",
+    "db:down": "cd backend && npm run db:down"
   },
   "author": "Santosh Shinde",
   "license": "Apache-2.0"

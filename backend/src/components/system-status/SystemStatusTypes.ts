@@ -1,16 +1,16 @@
-export type INodeJsMemoryUsage = {
+export interface INodeJsMemoryUsage {
 	rss: number;
 	heapTotal: number;
 	heapUsed: number;
 	external: number;
 }
 
-export type INodeJsCpuUsage = {
+export interface INodeJsCpuUsage {
 	user: number;
 	system: number;
 }
 
-export type INodeJsCpuInfo = {
+export interface INodeJsCpuInfo {
 	model: string;
 	speed: number;
 	times: {
@@ -22,24 +22,26 @@ export type INodeJsCpuInfo = {
 	};
 }
 
-export type ISystemMemory = {
+export interface ISystemMemory {
 	total: number;
 	free: number;
 	percentFree: number;
 }
 
-export type INodeJsNetworkInterfaceBase = {
+export interface INodeJsNetworkInterfaceBase {
 	address: string;
 	netmask: string;
 	mac: string;
 	internal: boolean;
 }
 
-export type INodeJsNetworkInterfaceInfoIPv4 = INodeJsNetworkInterfaceBase & {
+export interface INodeJsNetworkInterfaceInfoIPv4
+	extends INodeJsNetworkInterfaceBase {
 	family: 'IPv4';
 }
 
-export type INodeJsNetworkInterfaceInfoIPv6 = INodeJsNetworkInterfaceBase & {
+export interface INodeJsNetworkInterfaceInfoIPv6
+	extends INodeJsNetworkInterfaceBase {
 	family: 'IPv6';
 	scopeid: number;
 }
@@ -48,12 +50,12 @@ export type INodeJsNetworkInterfaceInfo =
 	| INodeJsNetworkInterfaceInfoIPv4
 	| INodeJsNetworkInterfaceInfoIPv6;
 
-export type IServerTimeResponse = {
+export interface IServerTimeResponse {
 	date: Date;
 	utc: Date;
 }
 
-export type INodeJsProcessVersions = {
+export interface INodeJsProcessVersions {
 	http_parser: string;
 	node: string;
 	v8: string;
@@ -64,11 +66,11 @@ export type INodeJsProcessVersions = {
 	openssl: string;
 }
 
-export type INodeJsProcessEnv = {
+export interface INodeJsProcessEnv {
 	[key: string]: string | undefined;
 }
 
-export type IProcessInfoResponse = {
+export interface IProcessInfoResponse {
 	procCpu: INodeJsCpuUsage;
 	memUsage: INodeJsMemoryUsage;
 	env: INodeJsProcessEnv;
@@ -78,7 +80,7 @@ export type IProcessInfoResponse = {
 	nodeDependencyVersions: INodeJsProcessVersions;
 }
 
-export type IUserInfo = {
+export interface IUserInfo {
 	username: string;
 	uid: number;
 	gid: number;
@@ -86,21 +88,21 @@ export type IUserInfo = {
 	homedir: string;
 }
 
-export type IOsInformation = {
+export interface IOsInformation {
 	platform: string;
 	version: string;
 	totalMemory: number;
 	uptime: number;
 }
 
-export type ISystemInfoResponse = {
+export interface ISystemInfoResponse {
 	cpus: INodeJsCpuInfo[];
 	network: { [index: string]: INodeJsNetworkInterfaceInfo[] };
 	os: IOsInformation;
 	currentUser: IUserInfo;
 }
 
-export type IResourceUsageResponse = {
+export interface IResourceUsageResponse {
 	processMemory: INodeJsMemoryUsage;
 	systemMemory: ISystemMemory;
 	processCpu: INodeJsCpuUsage;

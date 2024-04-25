@@ -5,89 +5,42 @@
         "version": "1.0.0",
         "title": "Node Boilerplate"
     },
-    "host": "",
+    "host": "http://localhost:8080/api/v1",
     "basePath": "",
-    "tags": [{
-        "name": "node-boilerplate",
-        "description": "Node Typescript Boilerplate"
-    }],
-    "schemes": ["http", "https"],
-    "paths": {
-        "/system/info": {
-            "get": {
-                "tags": ["node-boilerplate"],
-                "summary": "get system status",
-                "description": "",
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    }
-                },
-                "security": []
-            }
-        },
-        "/system/time": {
-            "get": {
-                "tags": ["node-boilerplate"],
-                "summary": "get server time",
-                "description": "",
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    }
-                },
-                "security": []
-            }
-        },
-        "/system/usage": {
-            "get": {
-                "tags": ["node-boilerplate"],
-                "summary": "get server usage",
-                "description": "",
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    }
-                },
-                "security": []
-            }
-        },
-        "/system/process": {
-            "get": {
-                "tags": ["node-boilerplate"],
-                "summary": "get server process",
-                "description": "",
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    }
-                },
-                "security": []
-            }
+    "tags": [
+        {
+            "name": "node-boilerplate",
+            "description": "Node Typescript Boilerplate"
         }
-    },
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
     "securityDefinitions": {},
-    "definitions": {
-        "ApiResponse": {
-            "type": "object",
-            "properties": {
-            }
-        }
-    },
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+		"/system/info": {
+			"get": {
+				"tags": [
+					"system",
+					"info"
+				],
+				"summary": "getSystemInfo",
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {}
+						}
+					}
+				}
+			}
+		}
+	},
     "externalDocs": {
-        "description": "Find out more about Node Typescript Boilerplate",
-        "url": "https://blog.santoshshinde.com/skeleton-for-node-js-apps-written-in-typescript-444fa1695b30"
+        "description": "Find out more about Node Typescript Boilerplate"
     }
 }
