@@ -3,29 +3,32 @@ import React, { useContext, useEffect, useState } from 'react';
 import GlobalContext from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { ready } from '../services/apis';
+import { StatusCodes } from 'http-status-codes';
 
 const Login = () => {
-    const { email, setEmail } = useContext(GlobalContext);
+    const { email, isActiveSession, setEmail } = useContext(GlobalContext);
     const [emailInput, setEmailInput] = useState(email);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (email) {
+        if (email && isActiveSession) {
             navigate("/");
         }
-    }, [email]);
+    }, [email, isActiveSession]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
+            setEmail(emailInput);
             const response = await ready({ id: emailInput })
-            console.log(`response - ${JSON.stringify(response)}`)
-        } catch(error) {
-            console.error(`${JSON.stringify(error)}`)
+            if (response?.status === StatusCodes.OK && response?.data?.isActive) {
+                navigate("/verify");
+            } else {
+                throw new Error('New User');
+            }
+        } catch (error) {
+            navigate("/setup");
         }
-        setEmail(emailInput);
-        navigate("/setup");
-        // navigate("/verify");
     };
 
     return (

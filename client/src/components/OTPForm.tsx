@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 
 interface IOTPForm { 
     loading: boolean, 
-    error: string, 
     handleSubmit: Function 
 };
 
-const OTPForm : React.FC<IOTPForm> = ({ loading, error, handleSubmit }) => {
+const OTPForm : React.FC<IOTPForm> = ({ loading, handleSubmit }) => {
     const [code, setCode] = useState('');
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -51,7 +50,6 @@ const OTPForm : React.FC<IOTPForm> = ({ loading, error, handleSubmit }) => {
                         'Submit'
                     )}
                 </button>
-                {error && <p className="text-red-500 mt-2">{error}</p>}
             </form>
         </div>
     );

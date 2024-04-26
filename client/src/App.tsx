@@ -13,9 +13,9 @@ function App() {
   return (
     <GlobalContextProvider>
       <Router>
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col">
           <Header />
-          <main className="flex-grow">
+          <main className="h-full min-h-screen flex-grow">
             <Routes>
               <Route path="/login" Component={Login} />
               <Route path="/setup" Component={Setup} />
