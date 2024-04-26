@@ -3,7 +3,6 @@ import QRCode from 'qrcode';
 import { authenticator } from 'otplib';
 import {
     User,
-    UserAttributes,
     UserCreationAttributes,
 } from '../../database/models/User';
 import logger from '../../lib/logger';
@@ -18,7 +17,7 @@ export class MultiFactorAuthService {
         try {
             const record = await User.findByPk(id);
 
-            if (!record || !record.isActive) {
+            if (!record?.isActive) {
                 throw new ApiError(ReasonPhrases.NOT_FOUND, StatusCodes.NOT_FOUND);
             }
 
