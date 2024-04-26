@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import GlobalContext from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
+import { ready } from '../services/apis';
 
 const Login = () => {
     const { email, setEmail } = useContext(GlobalContext);
@@ -9,14 +10,19 @@ const Login = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(email) {
+        if (email) {
             navigate("/");
         }
     }, [email]);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('emailInput', emailInput);
+        try {
+            const response = await ready({ id: emailInput })
+            console.log(`response - ${JSON.stringify(response)}`)
+        } catch(error) {
+            console.error(`${JSON.stringify(error)}`)
+        }
         setEmail(emailInput);
         navigate("/setup");
         // navigate("/verify");
