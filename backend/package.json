@@ -23,7 +23,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@types/express": "^4.17.21",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.12",
     "@types/swagger-ui-express": "^4.1.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -43,8 +43,8 @@
     "@types/cors": "^2.8.17",
     "@types/jest": "^29.5.12",
     "@types/qrcode": "^1.5.5",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
@@ -55,7 +55,8 @@
     "jest-sonar-reporter": "^2.0.0",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
-    "ts-jest": "^29.1.2",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.3",
     "ts-node": "^10.9.2"
   }
 }

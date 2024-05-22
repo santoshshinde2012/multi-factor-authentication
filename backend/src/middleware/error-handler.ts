@@ -24,7 +24,8 @@ const addErrorHandler = (
 			name: err.name,
 			status,
 		};
-		res.status(status).json(body);
+		res.status(status);
+		res.send(body);
 	}
 	next();
 };
