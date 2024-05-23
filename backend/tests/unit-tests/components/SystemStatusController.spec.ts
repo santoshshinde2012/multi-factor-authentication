@@ -13,6 +13,10 @@ describe('System Status Controller', () => {
         controller = new SystemStatusController();
     });
 
+    afterAll(() => {
+        process.env.APPLY_ENCRYPTION = 'false';
+    });
+
     beforeEach(() => {
         request = {};
         response = {

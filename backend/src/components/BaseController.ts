@@ -1,5 +1,6 @@
 import { Response, Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
+import getEncryptedText from '../utils';
 
 /**
  * Provides services common to all API methods
@@ -19,8 +20,7 @@ export default abstract class BaseController {
 	 * @param statusCode
 	 */
 	public send(res: Response, statusCode: number = StatusCodes.OK): void {
-		let obj = {};
-		obj = res.locals.data;
-		res.status(statusCode).send(obj);
+		const encryptedData = getEncryptedText(res.locals.data);
+		res.status(statusCode).send(encryptedData);
 	}
 }
